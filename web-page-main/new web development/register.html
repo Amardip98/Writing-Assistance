@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <script src="js/app.js" defer></script>
+  <title>Registration</title>
+</head>
+<body>
+  <header>
+    <img src="photo-1681230745734-4e59736c3660.jpg" alt="Writing Assistant" class="logo">
+    <nav>
+      <ul>
+      <li><a href="newfront.html">Home</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="Features.html">Features</a></li>
+      <li><a href="About Us.html">About Us</a></li>
+      </ul>
+      
+    </nav>
+  </header>
+  <main>
+    <h1>Registration</h1>
+    <form id="registerForm">
+      <label>Name:<br> <input type="text" name="name" required></label><br>
+      <label>Address: <input type="text" name="address" required></label><br>
+      <label>Phone Number: <input type="text" name="phone" required></label><br>
+      <label>Email Address: <input type="email" name="email" required></label><br>
+      <label>Username: <input type="text" name="username" required></label><br>
+      <label>Password: <input type="password" name="password" required></label><br>
+      <button type="submit">Register</button>
+    </form>
+  </main>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+
+      const usernameRegex = /^[a-zA-Z]+$/;
+      const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[?$#@]).{6,10}$/;
+
+      if (!usernameRegex.test(username)) {
+        alert("Username must contain only letters.");
+        return;
+      }
+
+      if (!passwordRegex.test(password)) {
+        alert("Password must be 6-10 characters long, include letters, numbers, and ?$#@.");
+        return;
+      }
+
+      alert("Registration successful!");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Writing Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            height: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        #suggestions {
+            margin-top: 10px;
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+        }
+        .suggestion {
+            padding: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        .suggestion:hover {
+            background-color: #e0e0e0;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI-Powered Writing Assistant</h1>
+    <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
+    <div id="suggestions"></div>
+    <button onclick="clearText()">Clear Text</button>
+
+    <script>
+        const textarea = document.getElementById('inputText');
+        const suggestionsDiv = document.getElementById('suggestions');
+
+        // Sample word suggestions (simulating AI-powered suggestions)
+        const wordSuggestions = {
+            'hello': ['world', 'there', 'everyone'],
+            'the': ['quick', 'brown', 'lazy'],
+            'ai': ['powered', 'intelligent', 'machine'],
+            'writing': ['assistant', 'tool', 'software'],
+            'is': ['very', 'extremely', 'quite']
+        };
+
+        textarea.addEventListener('input', () => {
+            const text = textarea.value;
+            const words = text.split(' ');
+            const lastWord = words[words.length - 1].toLowerCase();
+
+            // Clear previous suggestions
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.style.display = 'none';
+
+            // Show suggestions if the last word has matches
+            if (wordSuggestions[lastWord]) {
+                suggestionsDiv.style.display = 'block';
+                wordSuggestions[lastWord].forEach(word => {
+                    const suggestion = document.createElement('div');
+                    suggestion.className = 'suggestion';
+                    suggestion.textContent = word;
+                    suggestion.addEventListener('click', () => {
+                        words[words.length - 1] = word;
+                        textarea.value = words.join(' ') + ' ';
+                        suggestionsDiv.style.display = 'none';
+                        textarea.focus();
+                    });
+                    suggestionsDiv.appendChild(suggestion);
+                });
+            }
+        });
+
+        function clearText() {
+            textarea.value = '';
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.style.display = 'none';
+            textarea.focus();
+        }
+    </script>
+</body>
+</html>

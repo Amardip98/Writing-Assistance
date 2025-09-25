@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <script src="js/app.js" defer></script>
+  <title>Login</title>
+</head>
+<body>
+  <header>
+    <img src="photo-1681230745734-4e59736c3660.jpg" alt="Writing Assistant" class="logo">
+    <nav>
+      <ul>
+        <li><a href="newfront.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="Features.html">Features</a></li>
+        <li><a href="About Us.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <img src ="IMG_6585.JPG" alt="Writing Assistant">
+    <h1>Login</h1>
+    <div class="form">
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+    </div></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Online Car Sale. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Login validation
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+
+      // Example: Validate username and password fields
+      if (username.trim() === "" || password.trim() === "") {
+        alert("All fields are required.");
+        return;
+      }
+
+      // Add additional checks here (e.g., check against a database or predefined values)
+      alert("Login successful!");
+      window.location.href = "seller.html"; // Redirect to seller dashboard
+    });
+  </script>
+</body>
+</html>
